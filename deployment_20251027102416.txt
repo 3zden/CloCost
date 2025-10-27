@@ -1,0 +1,7 @@
+Deployment ID: 20251027102416
+Date: 2025-10-27 10:24:33.450558
+Instance IDs: i-065f44c8424f75256,i-033237c21259ff86a
+Security Group: sg-0ca4f4f9d28c4861c
+Key Pair: cloud_optimizer_test_key_20251027102416
+Volume ID: vol-02428382f242bfc34
+S3 Bucket: cloud-optimizer-test-20251027102416
