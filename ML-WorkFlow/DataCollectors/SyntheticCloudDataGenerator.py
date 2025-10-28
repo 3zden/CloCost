@@ -76,3 +76,10 @@ class SyntheticCloudDataGenerator:
         print(f"  • Unique regions: {df['region'].nunique()}")
         print(f"  • Unique environments: {df['environment'].nunique()}")
         return df
+if __name__=="__main__":
+    generator=SyntheticCloudDataGenerator(seed=42)
+    synthetic_data=generator.generate_synthetic_training_data(num_days=365,num_resources=100)
+    synthetic_data.to_csv("synthetic_cloud_data.csv", index=False)
+    print("✓ Successfully saved synthetic cloud data to synthetic_cloud_data.csv")
+    print("\n=== SAMPLE SYNTHETIC DATA ===")
+    print(synthetic_data.head())

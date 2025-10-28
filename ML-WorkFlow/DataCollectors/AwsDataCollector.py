@@ -30,7 +30,7 @@ class AwsDataCollector:
                         'Start':str(start_date),
                         'End':str(end_date)
                     },
-                    Granularity='Daily',
+                    Granularity='DAILY',
                     Metrics=['UnblendedCost','UsageQuantity','NormalizedUsageAmount'],
                     GroupBy=[
                         {'Type':'DIMENSION','Key':'SERVICE'},
@@ -61,32 +61,52 @@ class AwsDataCollector:
     def get_all_resources(self):
             resources=[]
             try:
+                # --- Process EC2 Instances ---
                 ec2_response=self.ec2.describe_instances()
                 for reservation in ec2_response['Reservations']:
                     for instance in reservation['Instances']:
+                        tags = {tag['Key']: tag['Value'] for tag in instance.get('Tags', [])}
                         resources.append({
-                    'InstanceId':instance['InstanceId'],
-                    'InstanceType':instance['InstanceType'],
-                    'State':instance['State']['Name'],
-                    'LaunchTime':instance['LaunchTime'].strftime('%Y-%m-%d %H:%M'),
-                    'Region':instance['Placement']['AvailabilityZone'],
-                    'ResourceName':instance['Tags'][0]['Value'] if 'Tags' in instance and instance['Tags'] else 'N/A',
-                    'Tags': {tag['Key']: tag['Value'] for tag in instance.get('Tags', [])}
-                })
+                            # --- Standardized Fields ---
+                            'resource_id': instance['InstanceId'],
+                            'resource_type': 'EC2',
+                            'region': instance['Placement']['AvailabilityZone'],
+                            'state': instance['State']['Name'],
+                            'creation_date': instance['LaunchTime'].strftime('%Y-%m-%d %H:%M'),
+                            'tags': tags,
+                            'name': tags.get('Name', 'N/A'),
+                            # --- Specific Details ---
+                            'details': {
+                                'InstanceType': instance['InstanceType']
+                            }
+                        })
+                
+                # --- Process EBS Volumes ---
                 ebs_response=self.ec2.describe_volumes()
                 for volume in ebs_response['Volumes']:
+                    tags = {tag['Key']: tag['Value'] for tag in volume.get('Tags', [])}
                     resources.append({
-                        'VolumeId':volume['VolumeId'],
-                        'resource_id': volume['VolumeId'],
-                        'size': volume['Size'],
-                        'volume_type': volume['VolumeType'],
-                        'state': volume['State'],
-                        'attached': len(volume.get('Attachments', [])) > 0,
-                        'tags': {tag['Key']: tag['Value'] for tag in volume.get('Tags', [])}
-                    })
+                            # --- Standardized Fields ---
+                            'resource_id': volume['VolumeId'],
+                            'resource_type': 'EBS',
+                            'region': volume['AvailabilityZone'],
+                            'state': volume['State'],
+                            'creation_date': volume['CreateTime'].strftime('%Y-%m-%d %H:%M'),
+                            'tags': tags,
+                            'name': tags.get('Name', 'N/A'),
+                            # --- Specific Details ---
+                            'details': {
+                                'Size': volume['Size'],
+                                'VolumeType': volume['VolumeType'],
+                                'Attached': len(volume.get('Attachments', [])) > 0
+                            }
+                        })
+
+                # --- Process S3 Buckets ---
                 buckets=self.s3.list_buckets()
                 for bucket in buckets['Buckets']:
                     try:
+                        # Get S3 bucket size (this part was correct)
                         Cw_response=self.cloudwatch.get_metric_statistics(
                             Namespace='AWS/S3',
                             MetricName='BucketSizeBytes',
@@ -100,16 +120,27 @@ class AwsDataCollector:
                             Statistics=['Average']
                         )
                         size=Cw_response['Datapoints'][0]['Average'] if Cw_response['Datapoints'] else 0
+                        
                         resources.append({
+                            # --- Standardized Fields ---
                             'resource_id': bucket['Name'],
                             'resource_type': 'S3',
-                            'size_bytes': size,
+                            'region': 'global', # S3 buckets are global, though names are unique
+                            'state': 'N/A', # S3 buckets don't have a 'running/stopped' state
                             'creation_date': bucket['CreationDate'].strftime('%Y-%m-%d %H:%M'),
+                            'tags': {}, # S3 bucket tags require a separate get_bucket_tagging call
+                            'name': bucket['Name'],
+                            # --- Specific Details ---
+                            'details': {
+                                'size_bytes': size
+                            }
                         })
                     except Exception as e:
                         print(f"Error processing S3 bucket {bucket['Name']}: {e}")
+                
                 print(f"Collected {len(resources)} resources")
                 return pd.DataFrame(resources)
+            
             except Exception as e:
                 print(f"Error collecting resources: {e}")
                 return pd.DataFrame()
@@ -148,3 +179,18 @@ class AwsDataCollector:
     def get_resource_metadata(self):
         print("Metadata collection not yet implemented.")
         return pd.DataFrame()
+    
+if __name__=="__main__":
+    collector=AwsDataCollector(region='us-east-1')
+    data=collector.collect_data(days_back=30)
+    print("\n=== SAVING DATA TO CSV FILES ===")
+    for key, df in data.items():
+        if not df.empty:
+            filename = f"{key}_data.csv"
+            df.to_csv(filename, index=False)
+            print(f"✓ Successfully saved {filename}")
+        else:
+            print(f"i Skipped saving empty DataFrame: {key}")
+    for key,df in data.items():
+        print(f"\n=== {key.upper()} DATA ===")
+        print(df.head())

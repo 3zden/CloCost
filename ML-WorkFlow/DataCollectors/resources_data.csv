@@ -1,0 +1,11 @@
+resource_id,resource_type,region,state,creation_date,tags,name,details
+i-065f44c8424f75256,EC2,us-east-1d,running,2025-10-27 09:24,"{'Environment': 'development', 'Project': 'cloud-optimizer', 'Purpose': 'cost-analysis-test', 'Name': 'test-instance-1'}",test-instance-1,{'InstanceType': 't3.micro'}
+i-033237c21259ff86a,EC2,us-east-1d,running,2025-10-27 09:24,"{'Environment': 'development', 'Purpose': 'cost-analysis-test', 'Project': 'cloud-optimizer', 'Name': 'test-instance-2'}",test-instance-2,{'InstanceType': 't3.micro'}
+vol-07c7eb049ed682534,EBS,us-east-1d,in-use,2025-10-27 09:24,{},N/A,"{'Size': 8, 'VolumeType': 'gp2', 'Attached': True}"
+vol-0b71cfec69eaa68e4,EBS,us-east-1d,in-use,2025-10-27 09:24,{},N/A,"{'Size': 8, 'VolumeType': 'gp2', 'Attached': True}"
+vol-02428382f242bfc34,EBS,us-east-1a,available,2025-10-27 09:24,"{'Name': 'test-unattached-volume', 'Purpose': 'orphaned-volume-test', 'Project': 'cloud-optimizer'}",test-unattached-volume,"{'Size': 8, 'VolumeType': 'gp3', 'Attached': False}"
+vol-0b9361434042f23c2,EBS,us-east-1a,available,2025-10-27 09:11,"{'Name': 'test-unattached-volume', 'Purpose': 'orphaned-volume-test', 'Project': 'cloud-optimizer'}",test-unattached-volume,"{'Size': 8, 'VolumeType': 'gp3', 'Attached': False}"
+vol-0ae4b804051ed8c02,EBS,us-east-1a,available,2025-10-27 09:17,"{'Name': 'test-unattached-volume', 'Purpose': 'orphaned-volume-test', 'Project': 'cloud-optimizer'}",test-unattached-volume,"{'Size': 8, 'VolumeType': 'gp3', 'Attached': False}"
+cloud-optimizer-test-20251027101104,S3,global,N/A,2025-10-27 09:11,{},cloud-optimizer-test-20251027101104,{'size_bytes': 0}
+cloud-optimizer-test-20251027101659,S3,global,N/A,2025-10-27 09:17,{},cloud-optimizer-test-20251027101659,{'size_bytes': 0}
+cloud-optimizer-test-20251027102416,S3,global,N/A,2025-10-27 09:24,{},cloud-optimizer-test-20251027102416,{'size_bytes': 0}
