@@ -11,7 +11,7 @@ class AwsDataCollector:
         self.ce=boto3.client('ce',region_name=region)
         self.cloudwatch=boto3.client('cloudwatch',region_name=region)
         
-        def collect_data(self,days_back=60):
+    def collect_data(self,days_back=60):
             data={
                 'costs':self.get_details_costs(days_back),
                 'resources':self.get_all_resources(),
@@ -20,7 +20,7 @@ class AwsDataCollector:
             }
             return data
         
-        def get_details_costs(self,days_back):
+    def get_details_costs(self,days_back):
             end_date=datetime.now().date()
             start_date=end_date - timedelta(days=days_back)
             costs=[]
@@ -29,9 +29,9 @@ class AwsDataCollector:
                     TimePeriod={
                         'Start':str(start_date),
                         'End':str(end_date)
-                    }
+                    },
                     Granularity='Daily',
-                    Metrics=['UnblendedCost','UsageQuantity','NormalizedUsageAmount']
+                    Metrics=['UnblendedCost','UsageQuantity','NormalizedUsageAmount'],
                     GroupBy=[
                         {'Type':'DIMENSION','Key':'SERVICE'},
                         {'Type':'DIMENSION','Key':'USAGE_TYPE'}
@@ -58,7 +58,7 @@ class AwsDataCollector:
                 print(f"Error collecting cost data: {e}")
                 return pd.DataFrame()
             
-        def get_all_resources():
+    def get_all_resources(self):
             resources=[]
             try:
                 ec2_response=self.ec2.describe_instances()
@@ -107,13 +107,13 @@ class AwsDataCollector:
                             'creation_date': bucket['CreationDate'].strftime('%Y-%m-%d %H:%M'),
                         })
                     except Exception as e:
-                        pass
+                        print(f"Error processing S3 bucket {bucket['Name']}: {e}")
                 print(f"Collected {len(resources)} resources")
                 return pd.DataFrame(resources)
             except Exception as e:
                 print(f"Error collecting resources: {e}")
                 return pd.DataFrame()
-        def get_resource_utilization(self):
+    def get_resource_utilization(self):
             utilization=[]
             try:
                 instances=self.ec2.describe_instances(
@@ -143,5 +143,8 @@ class AwsDataCollector:
                 print(f"Collected utilization data for {len(utilization)} entries")
                 return pd.DataFrame(utilization)
             except Exception as e:
-                print(f"Error collecting utilization data: {e}")
+                print(f"Error collecting utilization data: {e}")       
                 return pd.DataFrame()
+    def get_resource_metadata(self):
+        print("Metadata collection not yet implemented.")
+        return pd.DataFrame()
