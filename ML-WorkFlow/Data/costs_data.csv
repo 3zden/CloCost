@@ -1,0 +1,57 @@
+date,service,usage_type,cost,usage_quantity,normalized_usage
+2025-10-19,AWS CloudShell,EUN1-DataTransfer-xAZ-In-Bytes,0.0,0.0017457707,0.0
+2025-10-19,AWS CloudShell,EUN1-DataTransfer-xAZ-Out-Bytes,0.0,0.0026696902,0.0
+2025-10-19,AWS CloudShell,EUN1-EUW2-AWS-In-Bytes,0.0,3.0436e-06,0.0
+2025-10-19,AWS CloudShell,EUN1-EUW2-AWS-Out-Bytes,6.09e-08,3.0436e-06,0.0
+2025-10-19,AWS Data Transfer,EUN1-EUW2-AWS-Out-Bytes,-6.08e-08,0.0,0.0
+2025-10-19,AWS Data Transfer,USE1-EUN1-AWS-Out-Bytes,-9.2e-09,0.0,0.0
+2025-10-19,AWS Glue,EUN1-Catalog-Request,0.0,2.0,0.0
+2025-10-19,AWS Key Management Service,eu-north-1-KMS-Requests,0.0,1.0,0.0
+2025-10-19,AWS Secrets Manager,EUN1-AWSSecretsManagerAPIRequest,0.0,1.0,0.0
+2025-10-19,Amazon Location Service,EUN1-ResourceList,0.0,2.0,0.0
+2025-10-19,Amazon Simple Notification Service,EUN1-Requests-Tier1,0.0,1.0,0.0
+2025-10-19,Amazon Simple Queue Service,EUN1-Requests-Tier1,0.0,1.0,0.0
+2025-10-19,Amazon Simple Storage Service,EUN1-Requests-Tier1,0.0,1.0,0.0
+2025-10-19,Amazon Simple Storage Service,Requests-Tier1,0.0,3.0,0.0
+2025-10-19,Amazon Simple Storage Service,USE1-EUN1-AWS-Out-Bytes,9.1e-09,4.555e-07,0.0
+2025-10-19,Tax,NoUsageType,0.0,0.0,0.0
+2025-10-20,AWS Data Transfer,USE1-EUN1-AWS-Out-Bytes,-7.4e-09,0.0,0.0
+2025-10-20,AWS Glue,EUN1-Catalog-Request,0.0,2.0,0.0
+2025-10-20,AWS Key Management Service,eu-north-1-KMS-Requests,0.0,1.0,0.0
+2025-10-20,AWS Secrets Manager,EUN1-AWSSecretsManagerAPIRequest,0.0,1.0,0.0
+2025-10-20,Amazon Location Service,EUN1-ResourceList,0.0,2.0,0.0
+2025-10-20,Amazon Simple Queue Service,EUN1-Requests-Tier1,0.0,1.0,0.0
+2025-10-20,Amazon Simple Storage Service,EUN1-Requests-Tier1,0.0,1.0,0.0
+2025-10-20,Amazon Simple Storage Service,Requests-Tier1,0.0,2.0,0.0
+2025-10-20,Amazon Simple Storage Service,USE1-EUN1-AWS-Out-Bytes,7.3e-09,3.67e-07,0.0
+2025-10-21,AWS Cost Explorer,USE1-APIRequest,0.0,2.0,0.0
+2025-10-21,AWS Data Transfer,USE1-EUN1-AWS-Out-Bytes,-1.8e-09,0.0,0.0
+2025-10-21,Amazon Simple Notification Service,EUN1-Requests-Tier1,0.0,1.0,0.0
+2025-10-21,Amazon Simple Storage Service,Requests-Tier1,0.0,1.0,0.0
+2025-10-21,Amazon Simple Storage Service,USE1-EUN1-AWS-Out-Bytes,1.8e-09,8.85e-08,0.0
+2025-10-22,AWS Cost Explorer,USE1-APIRequest,0.0,2.0,0.0
+2025-10-24,AWS Glue,EUN1-Catalog-Request,0.0,2.0,0.0
+2025-10-24,AWS Secrets Manager,EUN1-AWSSecretsManagerAPIRequest,0.0,1.0,0.0
+2025-10-24,Amazon Simple Queue Service,EUN1-Requests-Tier1,0.0,1.0,0.0
+2025-10-25,AWS Data Transfer,USE1-EUN1-AWS-Out-Bytes,-7.4e-09,0.0,0.0
+2025-10-25,AWS Key Management Service,eu-north-1-KMS-Requests,0.0,1.0,0.0
+2025-10-25,Amazon Location Service,EUN1-ResourceList,0.0,2.0,0.0
+2025-10-25,Amazon Simple Storage Service,EUN1-Requests-Tier1,0.0,1.0,0.0
+2025-10-25,Amazon Simple Storage Service,Requests-Tier1,0.0,2.0,0.0
+2025-10-25,Amazon Simple Storage Service,USE1-EUN1-AWS-Out-Bytes,7.3e-09,3.67e-07,0.0
+2025-10-26,AWS Data Transfer,USE1-EUN1-AWS-Out-Bytes,-1.8e-09,0.0,0.0
+2025-10-26,Amazon Simple Notification Service,EUN1-Requests-Tier1,0.0,1.0,0.0
+2025-10-26,Amazon Simple Storage Service,Requests-Tier1,0.0,1.0,0.0
+2025-10-26,Amazon Simple Storage Service,USE1-EUN1-AWS-Out-Bytes,1.8e-09,8.85e-08,0.0
+2025-10-27,AWS Data Transfer,USE1-USE2-AWS-Out-Bytes,-6.13e-08,0.0,0.0
+2025-10-27,EC2 - Other,DataTransfer-Regional-Bytes,0.0,4.5346e-06,0.0
+2025-10-27,EC2 - Other,EBS:VolumeUsage.gp2,-2e-09,0.107526882,0.0
+2025-10-27,EC2 - Other,EBS:VolumeUsage.gp3,2.5e-09,0.161290323,0.0
+2025-10-27,EC2 - Other,USE1-USE2-AWS-In-Bytes,0.0,6.5817e-06,0.0
+2025-10-27,EC2 - Other,USE1-USE2-AWS-Out-Bytes,6.13e-08,6.1263e-06,0.0
+2025-10-27,Amazon Elastic Compute Cloud - Compute,BoxUsage:t3.micro,0.0,14.0,7.0
+2025-10-27,Amazon Elastic Compute Cloud - Compute,DataTransfer-In-Bytes,0.0,0.0001230113,0.0
+2025-10-27,Amazon Elastic Compute Cloud - Compute,DataTransfer-Out-Bytes,0.0,0.00017808,0.0
+2025-10-27,Amazon Simple Storage Service,DataTransfer-In-Bytes,0.0,2.46e-07,0.0
+2025-10-27,Amazon Simple Storage Service,Requests-Tier1,0.0,6.0,0.0
+2025-10-27,Amazon Virtual Private Cloud,USE1-PublicIPv4:InUseAddress,0.0,17.190834,0.0
