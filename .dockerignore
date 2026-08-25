@@ -1,0 +1,10 @@
+venv/
+myenv/
+.venv/
+env/
+__pycache__/
+*.pyc
+.git/
+notebooks/
+*.csv
+.env

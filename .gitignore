@@ -1,0 +1,8 @@
+.venv/
+venv/
+myenv/
+__pycache__/
+*.pyc
+data/reference/
+data/generated/
+.env
