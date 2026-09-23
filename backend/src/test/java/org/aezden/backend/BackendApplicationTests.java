@@ -1,10 +1,10 @@
-package org.aezden.ingestionservice;
+package org.aezden.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class IngestionServiceApplicationTests {
+class BackendApplicationTests {
 
     @Test
     void contextLoads() {
