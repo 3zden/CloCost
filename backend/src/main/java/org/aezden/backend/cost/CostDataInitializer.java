@@ -48,7 +48,7 @@ public class CostDataInitializer implements CommandLineRunner {
                         today.minusDays(4), "97.11"),
                 cost(ANALYTICS_ACCOUNT, Provider.GCP, "Cloud Storage", "europe-west1",
                         today.minusDays(2), "19.43"),
-                cost(ANALYTICS_ACCOUNT, Provider.ORACLE, "Compute", "eu-frankfurt-1",
+                cost(ANALYTICS_ACCOUNT, Provider.AZURE, "Compute", "westeurope",
                         today.minusDays(1), "51.80")
         ));
     }
@@ -69,6 +69,7 @@ public class CostDataInitializer implements CommandLineRunner {
         record.setUsageDate(usageDate);
         record.setCost(new BigDecimal(amount));
         record.setCurrency("USD");
+        record.setProviderRecordId(provider.name() + "-" + accountId + "-" + usageDate + "-" + service);
         return record;
     }
 }

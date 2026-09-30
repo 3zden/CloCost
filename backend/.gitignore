@@ -21,6 +21,8 @@ target/
 
 .postman/
 postman/
+INGESTION.md
+PROJECT_GUIDE.md
 
 ### NetBeans ###
 /nbproject/private/

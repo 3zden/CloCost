@@ -33,7 +33,7 @@ public class CostService {
     }
 
     public ResponseEntity<CostSummaryResponse> getSummary() {
-        List<CostRecord> records = costRepo.getAllByUsageDateBefore(LocalDate.now());
+        List<CostRecord> records = costRepo.findByUsageDateLessThanEqual(LocalDate.now());
         BigDecimal totalCost = records.stream()
                 .map(CostRecord::getCost)
                 .filter(Objects::nonNull)
