@@ -21,10 +21,13 @@ public class AnomalyDetectionService {
     @Scheduled(cron = "${app.anomaly.cron:0 0 6 * * *}")
     public void detect() {
         LocalDate today = LocalDate.now();
+
         List<CostRecord> history = costRepository.findCosts(null, null, today.minusDays(30), today.minusDays(1));
+
         Map<List<Object>, List<BigDecimal>> grouped = history.stream().collect(Collectors.groupingBy(
                 record -> List.of(record.getProvider(), record.getService()),
                 Collectors.mapping(CostRecord::getCost, Collectors.toList())));
+
         for (Map.Entry<List<Object>, List<BigDecimal>> entry : grouped.entrySet()) {
             List<BigDecimal> values = entry.getValue();
             if (values.size() < 3) continue;

@@ -23,6 +23,7 @@ target/
 postman/
 INGESTION.md
 PROJECT_GUIDE.md
+../INTERVIEW_GUIDE.md
 
 ### NetBeans ###
 /nbproject/private/
