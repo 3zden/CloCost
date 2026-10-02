@@ -24,6 +24,8 @@ postman/
 INGESTION.md
 PROJECT_GUIDE.md
 ../INTERVIEW_GUIDE.md
+#../INTERVIEW_GUIDE.md
+AUTH.md
 
 ### NetBeans ###
 /nbproject/private/

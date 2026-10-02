@@ -15,6 +15,8 @@ import java.util.UUID;
 public class CloudAccount {
     @Id @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+    // The AppUser who connected it. Nullable only for rows created before auth existed.
+    private UUID ownerId;
     @Enumerated(EnumType.STRING) @Column(nullable = false)
     private Provider provider;
     @Column(nullable = false, length = 100)

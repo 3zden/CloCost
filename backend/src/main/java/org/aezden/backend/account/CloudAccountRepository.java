@@ -5,4 +5,5 @@ import java.util.*;
 
 public interface CloudAccountRepository extends JpaRepository<CloudAccount, UUID> {
     List<CloudAccount> findByStatus(AccountStatus status);
+    List<CloudAccount> findByOwnerIdOrderByCreatedAtDesc(UUID ownerId);
 }

@@ -40,8 +40,8 @@ public interface CostRepo extends JpaRepository<CostRecord, UUID> {
             SELECT c FROM CostRecord c
             WHERE (:provider IS NULL OR c.provider = :provider)
             AND (:accountId IS NULL OR c.accountId = :accountId)
-            AND (:startDate IS NULL OR c.usageDate >= :startDate)
-            AND (:endDate IS NULL OR c.usageDate <= :endDate)
+            AND (CAST(:startDate AS LocalDate) IS NULL OR c.usageDate >= :startDate)
+            AND (CAST(:endDate AS LocalDate) IS NULL OR c.usageDate <= :endDate)
             ORDER BY c.usageDate
             """)
     List<CostRecord> findCosts(
